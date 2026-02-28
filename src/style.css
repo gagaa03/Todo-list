@@ -1,0 +1,773 @@
+@import "~@mdi/font/css/materialdesignicons.min.css";
+
+@font-face {
+    font-family: "JFopen";
+    src: url('./jf-openhuninn-1.1.ttf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+:root {
+	--Archivo: 'Archivo Black', sans-serif;
+	--JFopen: "JFopen", sans-serif;
+
+	--light: #FCFAF2;
+	--blue: rgba(105, 176, 172, 0.85);
+	--light-blue: #CFE8FF;
+    --green: #707C74;
+    --light-green: #bed6c2;
+	--grey: #eee;
+	--dark-grey: #AAAAAA;
+	--dark: #4D5139;
+	--red: rgba(203, 64, 66, 0.85);
+	--yellow: #FFCE26;
+	--light-yellow: #FFF2C6;
+	--orange: rgba(240, 94, 28, 0.85);
+	--light-orange: #FFE0D3;
+}
+
+
+
+html, body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "JFopen", sans-serif;
+}
+
+body {
+    background: var(--light-green);
+}
+
+
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    height: 100vh;
+    width: 100vw;
+}
+
+
+
+
+/* SIDE */
+.side {
+    min-width: 220px;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--light);
+    box-sizing: border-box;
+    overflow-y: auto;
+
+    z-index: 2000;
+    overflow-x: hidden;
+    scrollbar-width: none;
+}
+
+.side::--webkit-scrollbar {
+	display: none;
+}
+
+.side.hide {
+	width: 60px;
+}
+
+.side header {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    padding-left: 15px;
+    margin-top: 15px;
+}
+
+.logo {
+    color: var(--green);
+    font-size: 3rem;
+}
+
+.LOGO {
+    font-family: var(--Archivo);
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--green);
+    
+    margin: 0;
+    padding-left: 0.5rem;
+}
+
+
+    .task-buttons, .projects {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        padding: 0;
+        margin-bottom: 5rem;
+        margin-top: 1rem;
+        list-style: none;
+    }
+
+    .task-buttons li, .projects li {
+        list-style: none;
+    }
+
+    .task-buttons li, .projects li {
+        height: 48px;
+        margin-left: 6px;
+        border-radius: 48px 0 0 48px;
+        padding: 4px;
+        position: relative;
+    }
+
+    .task-buttons li.active, .projects li.active {
+        background: var(--light-green);
+    }
+    .task-buttons li.active::before,
+    .task-buttons li.active::after,
+    .projects li.active::before,
+    .projects li.active::after {
+        content: '';
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        right: 0;
+        box-shadow: 20px 20px 0 var(--light-green);
+        z-index: -1;
+    }
+    .task-buttons li.active::before, .projects li.active::before {
+        top: -40px;
+        box-shadow: 20px 20px 0 var(--light-green);
+    }
+    .task-buttons li.active::after, .projects li.active::after {
+        bottom: -40px;
+        box-shadow: 20px -20px 0 var(--light-green);
+    }
+
+
+    .task-buttons button, .projects button {
+        font-family: var(--JFopen);
+        font-size: 1.1rem;
+        height: 100%;
+        width: 100%;
+        text-align: left;
+        background-color: var(--light);
+        color: var(--green);
+
+        border: none;
+        border-radius: 24px;
+        padding: 0.2rem 0.8rem;
+        
+        cursor: pointer;
+
+        transition: transform 0.2s ease;
+    }
+    .task-buttons button:hover, .projects button:hover {
+        background-color: var(--light-green);
+        color: var(--green);        
+        transform: scale(0.98);
+    }
+
+    .active button:hover {
+        background-color: var(--light);
+        color: var(--green);        
+        transform: scale(0.98);
+    }
+
+#addTask-Btn:hover {
+    background-color: var(--light);
+    color: var(--green);        
+    transform: scale(0.98);
+    font-weight: 900;
+}
+
+
+
+.project-header {
+    display: flex;
+    letter-spacing: 0.05rem;
+    align-items: center;
+    padding-left: 1.3rem;
+}
+
+.project h2 {
+    font-size: 1.4rem;
+    margin: 0;
+    color: #62592C;
+    padding-right: 2rem;
+}
+
+#new-project {
+    font-size: 2rem;
+    background-color: transparent;
+    color: #62592C;
+
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+    transition: transform 0.2s ease;
+}
+#new-project:hover {
+    color: var(--dark);        
+    font-weight: 700;
+
+    transform: scale(1.1);
+}
+
+.project-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.project-item span {
+    transition: transform 0.3s ease;
+}
+
+
+.project-item span:hover {
+    font-weight: 900;
+    transform: scale(1.2);
+}
+
+
+/* Header */
+.header {
+    display: flex;
+	align-items: center;
+	gap: 1rem;
+	font-family: var(--JFopen);
+    position: relative;
+
+	height: 56px;
+	background: var(--light);
+	padding: 0 24px;
+	z-index: 1000;
+}
+.header::before {
+	content: '';
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	bottom: -40px;
+	left: 0;
+	border-radius: 50%;
+	box-shadow: -20px -20px 0 var(--light);
+}
+
+
+.header form {
+	max-width: 400px;
+	width: 100%;
+	margin-right: auto;
+}
+.header form .form-input {
+	display: flex;
+	align-items: center;
+	height: 36px;
+
+    position: relative;
+    left: -20px;
+}
+.header form .form-input input {
+	flex-grow: 1;
+	padding: 0 0 0 16px;
+	height: 100%;
+	border: none;
+	background: var(--grey);
+	border-radius: 36px 0 0 36px;
+	outline: none;
+	width: 100%;
+	color: var(--dark);
+}
+.header form .form-input button {
+	width: 36px;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: var(--light-green);
+	color: var(--light);
+	font-size: 18px;
+	border: none;
+	outline: none;
+	border-radius: 0 36px 36px 0;
+	cursor: pointer;
+}
+
+
+.header .swith-lm {
+	background-color: var(--grey);
+	border-radius: 50px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 3px;
+	position: relative;
+	min-height: 21px;
+	min-width: 45px;
+	transform: scale(1.5);
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
+}
+
+.header .swith-lm .ball {
+	background-color: var(--green);
+	border-radius: 50%;
+	position: absolute;
+	top: 3px;
+	left: 5px;
+	height: 20px;
+	width: 20px;
+	transform: translateX(0px);
+	transition: transform 0.2s linear;
+}
+
+.header .checkbox:checked + .swith-lm .ball {
+	transform: translateX(22px);
+}
+
+.bxs-moon {
+	color: var(--yellow);
+}
+
+.bx-sun {
+	color: var(--orange);
+	animation: shakeOn .7s;
+}
+
+
+.header .profile img {
+	width: 36px;
+	height: 36px;
+	object-fit: cover;
+	border-radius: 50%;
+}
+
+
+
+
+
+/* Main */
+.main {
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.cards {
+    padding: 0 3rem 2rem 3rem;
+}
+
+.cards .title h1 {
+    color: var(--dark);
+    font-family: var(--Archivo);
+    font-weight: 500;
+    font-size: 2.5rem;
+}
+
+
+.control {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.cards #addTask-Btn {
+    font-family: var(--JFopen);
+    background-color: var(--light);
+    color: var(--green);
+    border-radius: 25px;
+    padding: 5px 20px;
+    border: none;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.2s ease,
+        letter-spacing 0.3s ease;
+
+    transform-origin: center center;
+    will-change: transform;
+}
+
+.cards #addTask-Btn:hover {
+    background-color: var(--dark);
+    color: var(--light);
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+
+    transform: scale(1.03);
+    
+}
+
+
+
+
+#sortMode {
+    font-family: var(--JFopen);
+    font-size: 14px;
+
+    color: var(--green);
+    background-color: var(--light);
+
+    border: none;
+    border-radius: 15px;
+    padding: 5px 12px;
+    cursor: pointer;
+
+    appearance: none; /* 去除瀏覽器預設樣式 */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transition: all 0.3s ease;
+
+    padding-right: 30px;
+ }
+
+#sortMode:hover {
+    background-color: var(--dark);
+    color: var(--light);
+ }
+
+
+/* 包裝 select 的外層 */
+.sort-controls {
+    position: relative;
+    display: inline-block;
+    min-width: 250px;
+}
+
+.sort-controls::after {
+    content: '▾';
+    position: absolute;
+    top: 50%;
+    right: 80px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--dark);
+}
+
+
+/* TodokList */
+#todo-list {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 1rem;
+
+    margin-top: 1.5rem;
+}
+
+.todo-item {
+    position: relative;
+    color: var(--dark);
+
+    border-radius: 25px;
+    padding: 0 20px 20px 20px;
+    min-width: 250px;
+    min-height: 142px;
+    background-color: rgba(251, 255, 247, 0.7);
+
+    transition: opacity 1s ease;
+}
+
+.todo-item h3 {
+    font-weight: 900;
+    letter-spacing: 0.05rem;
+    padding-left: 2rem;
+    padding-bottom: 5px;
+    margin-top: 0.65rem;
+    border-bottom: solid 2px var(--light);
+}
+
+.todo-item p {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+
+
+
+
+/* Project-list */
+#project-list {
+    margin-bottom: 2rem;
+}
+
+#project-list .label {
+    font-size: 1.3rem;
+    font-family: var(--Archivo);
+    color: var(--green);
+}
+
+#project-list .name {
+    font-size: 1.7rem;
+    font-family: var(--Archivo);
+    color: var(--dark);
+
+    font-weight: 900;
+    letter-spacing: 0.05rem;
+    padding-bottom: 5px;
+    margin-top: 0.65rem;
+    margin-bottom: 1rem;
+}
+/* Project-list */
+
+
+
+
+.todo-item button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: var(--green);
+
+    font-size: 1.1rem;
+    position: absolute;
+    top: 10px;
+    transform: translateY(0);
+    transition: transform 0.2s ease;
+}
+
+.todo-item button:hover {
+    transform: translateY(0) scale(1.2);
+}
+
+.todo-item .edit-todo {
+    right: 50px;
+}
+
+.todo-item .delete-todo {
+    right: 20px;
+}
+
+
+/* priority */
+.priority {
+    font-size: 14px;
+    color: var(--light);
+    border-radius: 25px;
+    padding: 3px 10px;
+
+    position: absolute;
+    top: 10px;
+    transform: translateY(0);
+    right: 85px;
+}
+
+
+.priority.low {
+	background-color: var(--blue);
+}
+
+.priority.medium {
+	background-color: var(--orange);
+}
+
+.priority.high {
+	background-color: var(--red);
+}
+
+
+
+/* completed */
+
+.completed {
+    position: absolute;
+    top: 10px;
+    transform: translateY(0);
+    left: 15px;
+}
+
+.completed input[type="checkbox"] {
+    appearance: none; /* 清除預設樣式 */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--green);
+    border-radius: 50%; /* 圓形 */
+    cursor: pointer;
+    background-color: transparent;
+    position: relative;
+    transition: all 0.3s ease;
+
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.completed input[type="checkbox"]::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: var(--green);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 1s ease;
+}
+
+.completed input[type="checkbox"]:checked::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+
+
+
+
+
+
+/* Diolog */
+dialog {
+    align-items: center;
+    font-family: var(--JFopen);
+    background-color: var(--green);
+    color: var(--light);
+
+    border: none;
+    border-radius: 30px;
+
+    animation: fade-out 0.3s ease-out;
+}
+
+
+#taskForm, #projectForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    gap: 1rem;
+    padding: 0.5rem;
+}
+
+#taskForm legend, #projectForm legend {
+    display: flex;
+    font-family: var(--Archivo);
+    font-size: 1.5rem;
+    font-weight: 500;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: solid 2px var(--light);
+}
+
+#taskForm label, #projectForm label {
+    font-size: 1.1rem;
+    letter-spacing: 0.05rem;
+    padding-right: 10px;
+}
+
+#taskForm .taskDesc {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#taskForm input, textarea , #projectForm input {
+    border-radius: 10px;
+    border: none;
+    padding: 5px 10px;
+}
+
+#taskForm select {
+    border-radius: 15px;
+    border: none;
+    padding: 5px 10px;
+}
+
+
+.taskBtn, .projectBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.taskBtn button, .projectBtn button {
+    font-family: var(--JFopen);
+
+    border: none;
+    border-radius: 20px;
+    padding: 5px 20px;
+    background-color: var(--light);
+    color: var(--dark);
+
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.taskBtn button:hover, .projectBtn button:hover {
+    background-color: var(--light-green);
+    color: var(--dark);
+
+    transform: scale(0.97);
+}
+
+
+
+
+dialog:open {
+  animation: fade-in 0.3s ease-out;
+}
+
+dialog:open::backdrop {
+  animation: backdrop-fade-in 0.3s ease-out forwards;
+}
+
+/* Animation keyframes */
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+    display: none;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+    display: block;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    transform: scaleY(1);
+    display: block;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scaleY(0);
+    display: none;
+  }
+}
+
+@keyframes backdrop-fade-in {
+  0% {
+    background-color: rgb(0 0 0 / 0%);
+  }
+
+  100% {
+    background-color: rgb(0 0 0 / 25%);
+  }
+}
+
+
+
