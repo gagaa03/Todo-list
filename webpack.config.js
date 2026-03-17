@@ -9,14 +9,17 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         clean: true,
     },
+
     plugins: [
         new HtmlWebpackPlugin({
         template: './src/template.html', // 從 src/template.html 複製到 dist
         }),
     ],
+
     devServer: {
         static: './dist',
     },
+    
     module: {
         rules: [
         {

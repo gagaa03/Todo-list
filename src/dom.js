@@ -7,6 +7,7 @@ const Dom = (() => {
     let projects = [];
     let currentView = 'all';
     let sortMode = 'date';
+    let searchQuery = '';
 
 
     const renderTodos = () => {
@@ -33,6 +34,14 @@ const Dom = (() => {
         } else if (currentView.startsWith('project:')) {
             const pname = currentView.split(':')[1];
             filtered = allTodos.filter(todo => todo.project === pname);
+        }
+
+        if (searchQuery.trim() !== '') {
+            const lowerCaseQuery = searchQuery.toLocaleLowerCase();
+            filtered = filtered.filter(todo => 
+                todo.title.toLowerCase().includes(lowerCaseQuery) ||
+                todo.description.toLocaleLowerCase().includes(lowerCaseQuery)
+            );
         }
 
 
@@ -102,14 +111,6 @@ const Dom = (() => {
         });
     };
 
-    // const getPriorityColor = (priority) => {
-    //     switch (priority) {
-    //         case 'High' : return 'red';
-    //         case 'Medium' : return 'orange';
-    //         case 'Low' : return 'green';
-    //         default: return 'gray';
-    //     }
-    // };
 
     const updateTitle = () => {
         const title = document.querySelector('.title h1');
@@ -119,6 +120,8 @@ const Dom = (() => {
         else if (currentView === 'complete') title.textContent = 'Well Done';
     };
 
+
+    
     const updateProjectIndicator = () => {
         const title = document.querySelector('.title h1');
         const pl = document.querySelector('#project-list');
@@ -130,12 +133,19 @@ const Dom = (() => {
             title.textContent = '';
             label.textContent = 'Current Project：';  // 可以選擇不動
             name.textContent = `${pname}`;
-            // pl.textContent = `Current Project： ${pname}`;
         } else {
             label.textContent = '';  // 也可以保留
             name.textContent = '';
         }
     };
+
+
+
+    const setSearchQuery = (query) => {
+        searchQuery = query;
+        renderTodos();
+    }
+
 
 
     const setProjects = (data) => { projects = data};
@@ -193,7 +203,7 @@ const Dom = (() => {
 
 
 
-    return { renderTodos, setProjects, setView, getProjects, addProjectToDOM, setSortMode };
+    return { renderTodos, setProjects, setView, getProjects, addProjectToDOM, setSortMode, setSearchQuery };
 })();
 
 

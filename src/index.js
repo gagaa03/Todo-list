@@ -5,6 +5,12 @@ import Form from './form.js';
 import Storage from './storage.js';
 import Project from './project.js';
 
+import { mdiMagnify } from '@mdi/js';
+
+const searchPath = document.querySelector('#search-icon-path');
+if (searchPath) {
+    searchPath.setAttribute('d', mdiMagnify);
+}
 
 
 const setupApp = () => {
@@ -28,10 +34,17 @@ const setupApp = () => {
         Dom.setSortMode(e.target.value);
     });
 
+    const searchForm = document.querySelector('.header form');
+    const searchInput = searchForm.querySelector('input[type="search"]')
+
+    searchInput.addEventListener('input', (e) => {
+        Dom.setSearchQuery(e.target.value)
+    })
+
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  setupApp(); // 這樣才能保證 DOM 都有載入
+  setupApp(); // 確保 DOM 都有載入
 });
 
 

@@ -37,7 +37,11 @@
                 <form action="#">
                     <div class="form-input">
                         <input type="search" placeholder="Search...">
-                        <button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+                        <button type="submit" class="search-btn">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                                <path id="search-icon-path" d="" />
+                            </svg>
+                        </button>
                     </div>
                 </form>
                 <input type="checkbox" class="checkbox" id="switch-mode" hidden />
@@ -118,10 +122,10 @@
 
     <dialog id="addProject" closedby="closerequest">
         <form id="projectForm">
-            <legend>Add a Progect</legend>
+            <legend>Add a Project</legend>
             <div>
-                <label for="addprogect">Progect Name</label>
-                <input type="text" name="addprogect" id="addprogect" required />
+                <label for="addproject">Project Name</label>
+                <input type="text" name="addproject" id="addproject" required />
             </div>
             <div class="projectBtn">
                 <button id="project-closeBtn" type="button">Close</button>

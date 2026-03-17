@@ -44,7 +44,7 @@ body {
 
 .container {
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: minmax(200px, 230px) 1fr;
     height: 100vh;
     width: 100vw;
 }
@@ -54,8 +54,7 @@ body {
 
 /* SIDE */
 .side {
-    min-width: 220px;
-    max-width: 300px;
+    min-width: 185px;
     display: flex;
     flex-direction: column;
     background-color: var(--light);
@@ -240,6 +239,7 @@ body {
     display: flex;
 	align-items: center;
 	gap: 1rem;
+
 	font-family: var(--JFopen);
     position: relative;
 

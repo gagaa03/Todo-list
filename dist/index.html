@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To do list</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+<script defer src="main.js"></script></head>
+<body>
+    <div class="container">
+        <div class="side">
+            <header>
+                <div class="logo"><span class="mdi mdi-format-list-checks"></span></div>
+                <h1 class="LOGO">DO THINGS</h1>
+            </header>
+            <ul class="task-buttons">
+                <li class="no-active"><button id="addTask-Btn">Add Task</button></li>
+                <li class="active"><button id="allTasks-Btn">All Tasks</button></li>
+                <li><button id="today-Btn">Today</button></li>
+                <li><button id="upcoming-Btn">Upcoming</button></li>
+                <li><button id="complete-Btn">Well Done</button></li>
+            </ul>
+
+            <div class="project">
+                <div class="project-header">
+                    <h2>Projects</h2>
+                    <button id="new-project"> <span class="mdi mdi-playlist-plus"></span> </button>
+                </div>
+                <ul class="projects">
+                    <!-- <li><button class="project-item">default</button></li> -->
+                </ul>
+            </div>
+        </div>
+        <div class="main">
+            <div class="header">
+                <form action="#">
+                    <div class="form-input">
+                        <input type="search" placeholder="Search...">
+                        <button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+                    </div>
+                </form>
+                <input type="checkbox" class="checkbox" id="switch-mode" hidden />
+                <label class="swith-lm" for="switch-mode">
+                    <i class="bx bxs-moon"></i>
+                    <i class="bx bx-sun"></i>
+                    <div class="ball"></div>
+                </label>
+                <a href="#" class="profile" id="profileIcon">
+                    <img src="https://placehold.co/600x400/png" alt="Profile">
+                </a>
+            </div>
+            <div class="cards">
+
+                <div class="title">
+                    <h1>All Tasks</h1>
+                    <div id="project-list">
+                        <span class="label">Current Project：</span>
+                        <span class="name"></span>
+                    </div>
+                </div>
+
+                <div class="control">
+                    <button id="addTask-Btn">Add Task</button>
+                    <div class="sort-controls">
+                        <label for="sortMode">Sort by：</label>
+                        <select id="sortMode">
+                            <option value="date">Due Date</option>
+                            <option value="priority">Priority</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="todo-list"></div>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <dialog id="newTask" closedby="closerequest">
+        <form id="taskForm">
+            <legend>New Task</legend>
+            <div class="taskTitle">
+                <label for="taskTitle">Title</label>
+                <input type="text" name="taskTitle" id="taskTitle" placeholder="Task Name" required />
+            </div>
+            <div class="taskDesc">
+                <label for="description">Description</label>
+                <textarea name="description" id="description" cols="15" rows="3" style="resize:none;"></textarea>
+            </div>
+            <div class="dueDate">
+                <label for="dueDate">Due Date</label>
+                <input type="date" name="dueDate" id="dueDate" required />
+            </div>
+            <div>
+                <label for="priority-level">Priority</label>
+                <select id="priority-level">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="toProject">Choose project:</label>
+                <select name="toProject" id="toProject" required>
+                    <option disabled selected hidden>Click here to select a project</option>
+                    <!-- <option value="default">default</option> -->
+                </select>
+            </div>
+            <div class="taskBtn">
+                <button id="task-closeBtn" type="button">Close</button>
+                <button id="task-submitBtn">submit</button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog id="addProject" closedby="closerequest">
+        <form id="projectForm">
+            <legend>Add a Progect</legend>
+            <div>
+                <label for="addprogect">Progect Name</label>
+                <input type="text" name="addprogect" id="addprogect" required />
+            </div>
+            <div class="projectBtn">
+                <button id="project-closeBtn" type="button">Close</button>
+                <button id="project-submitBtn">submit</button>
+            </div>
+        </form>
+    </dialog>
+
+</body>
+</html>
