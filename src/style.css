@@ -209,6 +209,7 @@ body {
 .task-buttons li.active, .projects li.active {
     background: var(--light-green);
 }
+
 .task-buttons li.active::before,
 .task-buttons li.active::after,
 .projects li.active::before,
@@ -222,10 +223,12 @@ body {
     box-shadow: 20px 20px 0 var(--light-green);
     z-index: -1;
 }
+
 .task-buttons li.active::before, .projects li.active::before {
     top: -40px;
     box-shadow: 20px 20px 0 var(--light-green);
 }
+
 .task-buttons li.active::after, .projects li.active::after {
     bottom: -40px;
     box-shadow: 20px -20px 0 var(--light-green);
@@ -341,6 +344,7 @@ body {
 .header {
     display: flex;
 	align-items: center;
+    justify-content: space-between;
 	gap: 1rem;
 
 	font-family: var(--JFopen);
@@ -368,6 +372,26 @@ body {
 	box-shadow: -20px -20px 0 var(--light);
 }
 
+.search-form {
+    flex-grow: 0;
+    transition: flex-grow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    max-width: 400px;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-shrink: 0;
+
+    transition: all 0.3s ease;
+}
+
+.header.search-active .header-actions {
+    width: 0;
+    opacity: 0;
+    margin: 0;
+}
 
 .header form {
 	max-width: 400px;
@@ -415,17 +439,21 @@ body {
 .header .swith-lm {
 	background-color: var(--grey);
 	border-radius: 50px;
+
 	cursor: pointer;
+
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 3px;
+
 	position: relative;
 	min-height: 21px;
 	min-width: 45px;
-	transform: scale(1.5);
+    padding: 3px;	
     margin-right: 1.5rem;
     margin-left: 1.5rem;
+    
+    transform: scale(1.5);
 }
 
 .header .swith-lm .ball {
@@ -453,6 +481,11 @@ body {
 	animation: shakeOn .7s;
 }
 
+.header .profile {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
 
 .header .profile img {
 	width: 36px;
@@ -469,6 +502,18 @@ body {
 .main {
     box-sizing: border-box;
     overflow-y: auto;
+}
+
+#mobile-menu-btn {
+    display: none;
+
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--green);
+    margin-right: 10px;
+
+    cursor: pointer;    
 }
 
 .cards {
@@ -638,7 +683,7 @@ body {
 
     border-radius: 25px;
     padding: 0 20px 20px 20px;
-    min-width: 250px;
+    min-width: 200px;
     min-height: 142px;
     background-color: rgba(251, 255, 247, 0.7);
 
@@ -901,6 +946,9 @@ dialog:open::backdrop {
   animation: backdrop-fade-in 0.3s ease-out forwards;
 }
 
+
+
+
 /* Animation keyframes */
 
 @keyframes fade-in {
@@ -943,3 +991,130 @@ dialog:open::backdrop {
 
 
 
+/* RWD */
+@media (max-width: 768px) {
+    #mobile-menu-btn {
+        display: block;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .side {
+        position: fixed;
+
+        top: 0;
+        left: -100%; /* 預設完全藏在左邊 */
+        width: 260px;
+        height: 100vh;
+        z-index: 3000;
+
+        box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-right: none;
+    }
+
+    .side.active {
+        left: 0;
+    }
+
+    .task-buttons li.active::before,
+    .task-buttons li.active::after,
+    .projects li.active::before,
+    .projects li.active::after {
+        display: none;
+    }
+
+
+    .task-buttons li.active, 
+    .projects li.active {
+        background: linear-gradient(to left, rgba(112, 124, 116, 0.1), transparent);
+    }
+
+    .task-buttons li.active::before,
+    .projects li.active::before {
+        display: block;
+        content: '';
+
+        position: absolute;
+        left: -2px;
+        top: 20%;
+        height: 60%; 
+        width: 6px;
+
+        background-color: var(--green);
+        border-radius: 0 4px 4px 0;
+        box-shadow: none; 
+
+    }
+
+
+
+    .cards {
+        padding: 1.5rem 1.5rem;
+    }
+    
+    .header::before {
+        display: none;
+    }
+
+    #todo-list {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .todo-item {
+        padding: 15px;
+        min-height: auto;
+    }
+
+    .todo-item h3 {
+        font-size: 1.1rem;
+        padding-left: 2.5rem;
+        padding-right: 80px;
+    }
+
+    .priority {
+        font-size: 12px;
+        right: 75px;
+        top: 8px;
+    }
+    
+
+    .header.search-active .header-actions {
+        width: 0;
+        margin: 0;
+        opacity: 0;
+
+        overflow: hidden;
+        pointer-events: none;
+    }
+
+    .header.search-active .search-form {
+        flex: 1;
+        max-width: none;
+    }
+    
+
+
+}
+
+
+/* 遮罩層*/
+.overlay {
+    display: none;
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    background: rgba(0,0,0,0.3);
+    z-index: 2999;
+}
+
+.overlay.active {
+    display: block;
+}
