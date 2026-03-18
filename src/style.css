@@ -45,6 +45,10 @@
     --card-bg: rgba(45, 46, 36, 0.9);
 }
 
+.dark-theme .header {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
 .dark-theme .todo-item {
     background-color: var(--card-bg);
     border: 1px solid var(--grey);
@@ -128,6 +132,8 @@ body {
 /* SIDE */
 .side {
     min-width: 200px;
+    height: 100vh;
+
     display: flex;
     flex-direction: column;
     background-color: var(--light);
@@ -151,8 +157,15 @@ body {
     display: flex;
     text-align: center;
     align-items: center;
+    
     padding-left: 15px;
     margin-top: 15px;
+    padding-top: 15px;
+
+    position: sticky;
+    top: 0;
+    background-color: var(--light);
+    z-index: 2001;
 }
 
 .logo {
@@ -337,7 +350,13 @@ body {
 	background: var(--light);
 	padding: 0 24px;
 	z-index: 1000;
+
+    position: sticky;
+    top: 0;
+
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
+
 .header::before {
 	content: '';
 	position: absolute;
@@ -355,6 +374,7 @@ body {
 	width: 100%;
 	margin-right: auto;
 }
+
 .header form .form-input {
 	display: flex;
 	align-items: center;
@@ -363,6 +383,7 @@ body {
     position: relative;
     left: -20px;
 }
+
 .header form .form-input input {
 	flex-grow: 1;
 	padding: 0 0 0 16px;
@@ -374,6 +395,7 @@ body {
 	width: 100%;
 	color: var(--dark);
 }
+
 .header form .form-input button {
 	width: 36px;
 	height: 100%;
