@@ -9,6 +9,7 @@
 
 
 :root {
+    --Montserrat: 'Montserrat', "JFopen";
 	--Archivo: 'Archivo Black', sans-serif;
 	--JFopen: "JFopen", sans-serif;
 
@@ -28,6 +29,78 @@
 }
 
 
+
+/* 深色模式 */
+.dark-theme {
+    --light: #2D2E24; 
+    --light-green: #4D5139;
+    --grey: #3D3E33;
+    --dark: #FCFAF2;
+    --green: #bed6c2;
+    --orange: #F17C67;
+    --blue: #86A697;
+    --red: #C73E3A;
+
+    
+    --card-bg: rgba(45, 46, 36, 0.9);
+}
+
+.dark-theme .todo-item {
+    background-color: var(--card-bg);
+    border: 1px solid var(--grey);
+}
+
+.dark-theme .todo-item h3 {
+    border-bottom: solid 2px var(--green);
+}
+
+.dark-theme .header::before {
+    box-shadow: -20px -20px 0 var(--light);
+}
+
+.dark-theme .cards #addTask-Btn {
+    background-color: var(--grey);
+    color: var(--green);
+}
+
+.dark-theme .cards #addTask-Btn::before {
+    background-color: var(--green);
+}
+
+.dark-theme .cards #addTask-Btn:hover {
+    color: var(--light);
+}
+
+.dark-theme .priority.low {
+	background-color: var(--blue);
+}
+
+.dark-theme .priority.medium {
+	background-color: var(--orange);
+}
+
+.dark-theme .priority.high {
+	background-color: var(--red);
+}
+
+
+.bxs-moon, .bx-sun {
+    fill: var(--dark); 
+    transition: fill 0.3s ease;
+}
+
+.checkbox:checked + .swith-lm .bxs-moon {
+    color: var(--yellow);
+}
+
+.checkbox:not(:checked) + .swith-lm .bx-sun {
+    color: var(--orange);
+}
+
+
+
+
+/* ----------------------------------------- */
 
 html, body{
     height: 100%;
@@ -54,7 +127,7 @@ body {
 
 /* SIDE */
 .side {
-    min-width: 185px;
+    min-width: 200px;
     display: flex;
     flex-direction: column;
     background-color: var(--light);
@@ -70,7 +143,7 @@ body {
 	display: none;
 }
 
-.side.hide {
+.side .hide {
 	width: 60px;
 }
 
@@ -88,7 +161,7 @@ body {
 }
 
 .LOGO {
-    font-family: var(--Archivo);
+    font-family: var(--Montserrat);
     font-size: 1.5rem;
     font-weight: 900;
     color: var(--green);
@@ -98,88 +171,102 @@ body {
 }
 
 
-    .task-buttons, .projects {
-        display: flex;
-        flex-direction: column;
-        gap: 0.3rem;
-        padding: 0;
-        margin-bottom: 5rem;
-        margin-top: 1rem;
-        list-style: none;
-    }
+.task-buttons, .projects {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0;
+    margin-bottom: 5rem;
+    margin-top: 1rem;
+    list-style: none;
+}
 
-    .task-buttons li, .projects li {
-        list-style: none;
-    }
+.task-buttons li, .projects li {
+    list-style: none;
+}
 
-    .task-buttons li, .projects li {
-        height: 48px;
-        margin-left: 6px;
-        border-radius: 48px 0 0 48px;
-        padding: 4px;
-        position: relative;
-    }
+.task-buttons li, .projects li {
+    height: 48px;
+    margin-left: 6px;
+    border-radius: 48px 0 0 48px;
+    padding: 4px;
+    position: relative;
+}
 
-    .task-buttons li.active, .projects li.active {
-        background: var(--light-green);
-    }
-    .task-buttons li.active::before,
-    .task-buttons li.active::after,
-    .projects li.active::before,
-    .projects li.active::after {
-        content: '';
-        position: absolute;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        right: 0;
-        box-shadow: 20px 20px 0 var(--light-green);
-        z-index: -1;
-    }
-    .task-buttons li.active::before, .projects li.active::before {
-        top: -40px;
-        box-shadow: 20px 20px 0 var(--light-green);
-    }
-    .task-buttons li.active::after, .projects li.active::after {
-        bottom: -40px;
-        box-shadow: 20px -20px 0 var(--light-green);
-    }
+.task-buttons li.active, .projects li.active {
+    background: var(--light-green);
+}
+.task-buttons li.active::before,
+.task-buttons li.active::after,
+.projects li.active::before,
+.projects li.active::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    right: 0;
+    box-shadow: 20px 20px 0 var(--light-green);
+    z-index: -1;
+}
+.task-buttons li.active::before, .projects li.active::before {
+    top: -40px;
+    box-shadow: 20px 20px 0 var(--light-green);
+}
+.task-buttons li.active::after, .projects li.active::after {
+    bottom: -40px;
+    box-shadow: 20px -20px 0 var(--light-green);
+}
 
 
-    .task-buttons button, .projects button {
-        font-family: var(--JFopen);
-        font-size: 1.1rem;
-        height: 100%;
-        width: 100%;
-        text-align: left;
-        background-color: var(--light);
-        color: var(--green);
+.task-buttons button, .projects button {
+    font-family: var(--JFopen);
+    font-size: 1.1rem;
+    height: 100%;
+    width: 100%;
+    text-align: left;
+    background-color: var(--light);
+    color: var(--green);
 
-        border: none;
-        border-radius: 24px;
-        padding: 0.2rem 0.8rem;
-        
-        cursor: pointer;
+    border: none;
+    border-radius: 24px;
+    padding: 0.2rem 0.8rem;
+    
+    cursor: pointer;
 
-        transition: transform 0.2s ease;
-    }
-    .task-buttons button:hover, .projects button:hover {
-        background-color: var(--light-green);
-        color: var(--green);        
-        transform: scale(0.98);
-    }
+    transition: transform 0.2s ease;
+}
+.task-buttons button:hover, .projects button:hover {
+    background-color: var(--light-green);
+    color: var(--green);        
+    transform: scale(0.98);
+}
 
-    .active button:hover {
-        background-color: var(--light);
-        color: var(--green);        
-        transform: scale(0.98);
-    }
+.active button:hover {
+    background-color: var(--light);
+    color: var(--green);        
+    transform: scale(0.98);
+}
 
 #addTask-Btn:hover {
     background-color: var(--light);
     color: var(--green);        
     transform: scale(0.98);
+
     font-weight: 900;
+}
+
+#addTask-Btn .plus-icon {
+    display: inline-block;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#addTask-Btn:hover .plus-icon {
+    transform: rotate(180deg) scale(1.5);
+    color: var(--orange); 
 }
 
 
@@ -192,7 +279,10 @@ body {
 }
 
 .project h2 {
+    font-family: var(--Montserrat);
     font-size: 1.4rem;
+    font-weight: 900;
+
     margin: 0;
     color: #62592C;
     padding-right: 2rem;
@@ -365,9 +455,11 @@ body {
 
 .cards .title h1 {
     color: var(--dark);
-    font-family: var(--Archivo);
-    font-weight: 500;
-    font-size: 2.5rem;
+    font-family: var(--Montserrat);
+    font-weight: 700;
+    font-size: 2.2rem;
+
+    letter-spacing: 0.05rem;
 }
 
 
@@ -381,6 +473,7 @@ body {
     font-family: var(--JFopen);
     background-color: var(--light);
     color: var(--green);
+    
     border-radius: 25px;
     padding: 5px 20px;
     border: none;
@@ -389,6 +482,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 
     transition:
         background-color 0.3s ease,
@@ -400,14 +497,60 @@ body {
     will-change: transform;
 }
 
-.cards #addTask-Btn:hover {
-    background-color: var(--dark);
-    color: var(--light);
-    font-weight: 700;
-    letter-spacing: 0.1rem;
+.cards #addTask-Btn::before {
+    content: '';
+    position: absolute;
 
-    transform: scale(1.03);
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+
+    background: var(--dark);
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+    z-index: -1;
+}
+
+.cards #addTask-Btn .btn-text {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.cards #addTask-Btn::after {
+    content: '+';
+
+    position: absolute;
+    font-size: 1.8rem;
+    font-weight: 900;
+    left: 50%;
+    top: 50%;
+
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-90deg);
     
+    transition: all 0.4s ease;
+    color: var(--light);
+}
+
+.cards #addTask-Btn:hover .btn-text {
+    opacity: 0;
+    transform: scale(0.5); /* 文字縮小消失 */
+}
+
+.cards #addTask-Btn:hover::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg); /* 旋轉進場 */
+}
+
+.cards #addTask-Btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.cards #addTask-Btn:active {
+    transform: scale(0.95);
 }
 
 
@@ -483,9 +626,11 @@ body {
 .todo-item h3 {
     font-weight: 900;
     letter-spacing: 0.05rem;
+
     padding-left: 2rem;
     padding-bottom: 5px;
     margin-top: 0.65rem;
+
     border-bottom: solid 2px var(--light);
 }
 
@@ -506,17 +651,20 @@ body {
 
 #project-list .label {
     font-size: 1.3rem;
-    font-family: var(--Archivo);
+    font-family: var(--Montserrat);
+    font-weight: 600;
+
     color: var(--green);
 }
 
 #project-list .name {
     font-size: 1.7rem;
-    font-family: var(--Archivo);
+    font-family: var(--Montserrat);
+    font-weight: 700;
+    letter-spacing: 0.05rem;
+
     color: var(--dark);
 
-    font-weight: 900;
-    letter-spacing: 0.05rem;
     padding-bottom: 5px;
     margin-top: 0.65rem;
     margin-bottom: 1rem;
@@ -655,11 +803,13 @@ dialog {
 
 #taskForm legend, #projectForm legend {
     display: flex;
-    font-family: var(--Archivo);
+    font-family: var(--Montserrat);
     font-size: 1.5rem;
     font-weight: 500;
+
     justify-content: center;
     align-items: center;
+
     margin-bottom: 10px;
     padding-bottom: 5px;
     border-bottom: solid 2px var(--light);
