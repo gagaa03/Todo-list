@@ -6,16 +6,25 @@
     <title>My To do list</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <div class="container">
         <div class="side">
             <header>
                 <div class="logo"><span class="mdi mdi-format-list-checks"></span></div>
-                <h1 class="LOGO">DO THINGS</h1>
+                <h1 class="LOGO">DO it</h1>
             </header>
             <ul class="task-buttons">
-                <li class="no-active"><button id="addTask-Btn">Add Task</button></li>
+                <li class="no-active">
+                    <button id="addTask-Btn">
+                        <span class="plus-icon">+</span>
+                        Add Task
+                    </button>
+                </li>
                 <li class="active"><button id="allTasks-Btn">All Tasks</button></li>
                 <li><button id="today-Btn">Today</button></li>
                 <li><button id="upcoming-Btn">Upcoming</button></li>
@@ -65,7 +74,9 @@
                 </div>
 
                 <div class="control">
-                    <button id="addTask-Btn">Add Task</button>
+                    <button id="addTask-Btn">
+                        <span class="btn-text">Add Task</span>
+                    </button>
                     <div class="sort-controls">
                         <label for="sortMode">Sort by：</label>
                         <select id="sortMode">

@@ -5,6 +5,7 @@ import Form from './form.js';
 import Storage from './storage.js';
 import Project from './project.js';
 
+
 import { mdiMagnify } from '@mdi/js';
 
 const searchPath = document.querySelector('#search-icon-path');
@@ -13,6 +14,27 @@ if (searchPath) {
 }
 
 
+
+// 檢查使用者上次的選擇
+const themeSwitch = document.querySelector('#switch-mode');
+
+if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-theme');
+    themeSwitch.checked = true;
+}
+
+// 監聽深色模式切換開關
+themeSwitch.addEventListener('change', () => {
+    if (themeSwitch.checked) {
+        document.body.classList.add('dark-theme');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        document.body.classList.remove('dark-theme');
+        localStorage.setItem('theme', 'light');
+    }
+});
+
+// 切換類別
 const setupApp = () => {
     let projects = Storage.load();
     if (!projects.some(p => p.name === 'default')) {
@@ -54,38 +76,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     const projects = Storage.loadProjects();
-//     if (projects.length === 0) {
-//         const defaultProject = new Project('Default');
-//         projects.push(defaultProject);
-//     }
-
-//     Dom.setProjects(projects);
-//     Dom.renderTodos(projects[0]);
-
-//     Form.setupForms();
-
-//   // Filter 按鈕綁定
-//     const filterButtons = [
-//     ['#allTasks-Btn', 'all'],
-//     ['#today-Btn', 'today'],
-//     ['#upcoming-Btn', 'upcoming'],
-//     ['#complete-Btn', 'complete'],
-//     ];
-
-//     filterButtons.forEach(([selector, filter]) => {
-//         const btn = document.querySelector(selector);
-//         if (!btn) return;
-
-//         btn.addEventListener('click', () => {
-//             const current = Dom.getCurrentProject();
-//             if (current) {
-//                 window.currentFilter = filter;
-//                 Dom.renderTodos(current, filter);
-//             }
-//         });
-//     });
-// });
