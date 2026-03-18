@@ -71,8 +71,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+// 側邊攔
+const mobileMenuBtn = document.querySelector('#mobile-menu-btn');
+const sideBar = document.querySelector('.side');
+
+// 建立遮罩層
+const overlay = document.createElement('div');
+overlay.classList.add('overlay');
+document.body.appendChild(overlay);
+
+// 開啟選單
+mobileMenuBtn.addEventListener('click', () => {
+    sideBar.classList.add('active');
+    overlay.classList.add('active');
+});
+
+// 點擊遮罩關閉選單
+overlay.addEventListener('click', () => {
+    sideBar.classList.remove('active');
+    overlay.classList.remove('active');
+});
+
+// 點擊側邊欄內的項目後自動關閉
+const sideButtons = document.querySelectorAll('.side button');
+sideButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+            sideBar.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+    });
+});
 
 
 
 
+// 搜尋框
+const mainHeader = document.querySelector('.header'); 
+const mainSearchInput = document.querySelector('.search-form input');
+
+
+if (mainSearchInput) {
+    // 當使用者點擊搜尋框
+    mainSearchInput.addEventListener('focus', () => {
+        if (window.innerWidth <= 768) {
+            mainHeader.classList.add('search-active');
+        }
+    });
+
+    // 當使用者點擊其他位置
+    mainSearchInput.addEventListener('blur', () => {
+        if (window.innerWidth <= 768) {
+            mainHeader.classList.remove('search-active');
+        }
+    });
+}
 
