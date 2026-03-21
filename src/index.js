@@ -125,5 +125,21 @@ if (mainSearchInput) {
             mainHeader.classList.remove('search-active');
         }
     });
-}
+};
+
+
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    const mainContent = document.querySelector('.container');
+
+   if (preloader && mainContent) {
+        preloader.style.opacity = '0';
+        preloader.style.visibility = 'hidden';
+        
+        setTimeout(() => {
+            preloader.style.display = 'none';
+            document.body.classList.add('animation-start');
+        }, 300);
+    }
+});
 

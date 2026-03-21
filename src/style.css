@@ -124,9 +124,14 @@ body {
     grid-template-columns: minmax(200px, 230px) 1fr;
     height: 100vh;
     width: 100vw;
+
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-
+body.animation-start .container {
+    opacity: 1;
+}
 
 
 /* SIDE */
